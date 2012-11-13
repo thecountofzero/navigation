@@ -1,0 +1,14 @@
+<ul class="menu">
+    <% navItems.each(function(navItem) { %>
+
+		<li class="<%= navItem.class %> coolInset">
+		    <a <%= navItem.attr('url') !== "" ? 'href=' + navItem.attr('url') : '' %>>
+		        <span><%= navItem.attr('label') %></span>
+		        <% if(navItem.attr('subItems').length) { %>
+		            <span class="numberLeft"><%= navItem.attr('subItems').length %></span>
+		        <% } %>
+		    </a>
+		</li>
+
+    <% }) %>
+</ul>

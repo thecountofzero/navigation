@@ -1,0 +1,63 @@
+steal('can/control',
+	'can/view/ejs')
+.then('cloudarray/models/nav_items.js',
+	'tcoz/ui/collapsible_menu',
+	'cloudarray/resources/css', function() {
+
+	window.CloudArray = window.CloudArray || {};
+	window.CloudArray.Widgets = window.CloudArray.Widgets || {};
+
+	window.CloudArray.Widgets.Navigation = can.Control({
+
+		init : function() {
+			var self = this;
+
+			/*can.view('//cloudarray/widgets/navigation/views/navigation.ejs', {
+				navItems: CloudArray.Models.NavItem.findAll({}, function(navItems) {
+					self.navigationItems = navItems;
+				})
+			}).then(function(frag) {
+				self.element.append(frag);
+				self.menuItems = self.element.find('ul.menu > li');
+				self.menu = self.element.find('ul.menu');
+				new TCOZ.UI.CollapsibleMenu(self.menu);
+				self._setActive(can.route.attr());
+			});*/
+
+			can.when(CloudArray.Models.NavItem.findAll({})).done(function(navItems) {
+
+				self.navigationItems = navItems;
+				self.element.append(can.view(steal.config().root.join('cloudarray/widgets/navigation/views/navigation').path, {
+					navItems: navItems
+				}));
+				self.menuItems = self.element.find('ul.menu > li');
+				self.menu = self.element.find('ul.menu');
+				new TCOZ.UI.CollapsibleMenu(self.menu);
+				self._setActive(can.route.attr());
+			});
+		},
+
+		_setActive: function(data) {
+			var menuEl;
+
+			this.menuItems.find('> a').removeClass('active');
+			menuEl = this.element.find('li.' + data.app + ' > a').addClass('active').parent();
+
+			if(menuEl.hasClass('child')) {
+
+				var el = menuEl.closest('.collapsible').find('> a').addClass('active');
+
+				// Make the menu open when a submenu option is the current selection
+				this.menu.trigger('toggle', el);
+			}
+		},
+
+		"li click": function(el, ev) {
+			var activeEl;
+			//this.element.trigger('appActivated', 'Loading...');
+			this.menuItems.find('a').removeClass('active');
+			activeEl = el.find('a').addClass('active');
+			this.element.trigger('navElementActivated', activeEl.find('span').html());
+		}
+	});
+});

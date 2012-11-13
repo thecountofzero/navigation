@@ -1,0 +1,51 @@
+[
+    {
+        "id": "DASHBOARD",
+        "url": "#!app/dashboard",
+        "class": "dashboard",
+        "label": "myapp.navigation.dashboard",
+        "subItems": []
+    },
+    {
+        "id": "PLAYERS",
+        "url": "#!app/players",
+        "class": "players",
+        "label": "myapp.navigation.players",
+        "subItems": []
+    },
+    {
+        "id": "HIGHSCORES",
+        "url": "#!app/dashboard",
+        "class": "highScores",
+        "label": "myapp.navigation.highScores",
+        "subItems": []
+    },
+    {
+        "id": "ENEMIES",
+        "url": "#!app/enemies",
+        "class": "enemies",
+        "label": "myapp.navigation.enemies",
+        "subItems": []
+    },
+    {
+        "id": "LABRYNTHS",
+        "url": "#!app/labrynths",
+        "class": "labrynths",
+        "label": "myapp.navigation.labrynths",
+        "subItems": []
+    },
+    {
+        "id": "RUPEES",
+        "url": "#!app/rupees",
+        "class": "rupees",
+        "label": "myapp.navigation.rupees",
+        "subItems": []
+    },
+    {
+        "id": "TRIFORCE",
+        "url": "#!app/triforce",
+        "class": "triforce",
+        "label": "myapp.navigation.triforce",
+        "subItems": []
+    }
+]
